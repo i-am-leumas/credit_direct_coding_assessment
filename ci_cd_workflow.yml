@@ -1,0 +1,29 @@
+name: CI/CD Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy_to_airflow:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install apache-airflow
+
+      - name: Deploy DAGs
+        run: |
+          # Replace 'your_airflow_dags_folder' with the actual path to the Airflow DAGs folder
+          cp dags/* your_airflow_dags_folder/
