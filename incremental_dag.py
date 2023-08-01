@@ -1,10 +1,12 @@
+# incremental_dag.py
+
 from datetime import datetime, timedelta
 from airflow import DAG
 from airflow.operators.mysql_to_gcs import MySqlToGoogleCloudStorageOperator
 from airflow.operators.gcs_to_bq import GoogleCloudStorageToBigQueryOperator
 
 default_args = {
-    'owner': 'data_engineer',
+    'owner': 'senior_data_engineer',
     'depends_on_past': False,
     'start_date': datetime(2023, 8, 1),
     'email_on_failure': False,
